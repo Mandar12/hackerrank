@@ -1,4 +1,5 @@
 #include <iostream>
+#include <queue>
 
 struct node
 {
@@ -45,4 +46,23 @@ void postOrder(node* root)
     if (root->right)
         postOrder(root->right);
     std::cout << root->data << " ";
+}
+
+void levelOrder(node* root)
+{
+    if (root == nullptr)
+        return;
+    std::queue<node*> q;
+    q.push(root);
+
+    while (not q.empty())
+    {
+        auto n = q.front();
+        q.pop();
+        std::cout << n->data << " ";
+        if (n->left)
+            q.push(n->left);
+        if (n->right)
+            q.push(n->right);
+    }
 }
